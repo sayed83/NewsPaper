@@ -1,0 +1,136 @@
+﻿@model IEnumerable<BangladeshToday.Models.Newsinfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@*<link href="//bootswatch.com/3/flatly/bootstrap.min.css" rel="stylesheet" />*@
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary btn-xs">Create New</a>
+</p>
+<table class="table table-condensed table-bordered table-responsive table-hover table-striped" id="myTable" style="cursor:pointer;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Keyword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaptionPicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureNews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubFeatureNews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlideShow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotNews)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td class="mytext">
+                    @Html.Raw(item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Keyword)
+                </td>
+
+                <td>
+                    @if (item.CaptionPicture != null && System.IO.File.Exists(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "featuresNews\\" + item.CaptionPicture)))
+                    {
+                        <img src="~/featuresNews/@Html.DisplayFor(modelItem => item.CaptionPicture)" alt="@item.Title"
+                             width="100" height="100" class="img-responsive" style="border:1px solid #808080" />
+                        <br />
+                        @Html.ActionLink("Change Picture", "UploadFile", new { id = item.Newsserial })
+                    }
+                    else
+                    {
+                        <img src="~/featuresNews/no-image.png" alt="No Image" width="100" height="100" class="img-responsive" style="border:1px solid #808080" />
+                        <br />
+                        @Html.ActionLink("Upload Picture", "UploadFile", new { id = item.Newsserial })
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editor)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeatureNews)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubFeatureNews)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SlideShow)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HotNews)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Newsserial" class="btn btn-success btn-xs">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Newsserial" class="btn btn-primary btn-xs">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Newsserial" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    @*<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+    <script src="~/js/jquery.collapser.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mytext').collapser({
+                mode: 'lines',
+                truncate: 2
+            });
+        })
+    </script>
+}

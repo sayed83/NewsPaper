@@ -1,0 +1,143 @@
+﻿@model BangladeshToday.Models.Newsinfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<h2>Edit</h2>
+
+<h4>Newsinfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Newsserial" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select asp-for="Category" class="form-control">
+                    <option value="-Select-">-Select-</option>
+                    <option value="Politics">Politics</option>
+                    <option value="National">National</option>
+                    <option value="International">International</option>
+                    <option value="Business">Business</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Art & Culture">Art & Culture</option>
+                    <option value="Science & Tech">Science & Tech</option>
+                    <option value="Health & Life Style">Health & Life Style</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <select asp-for="Color" class="form-control">
+                    <option value="-Select-">-Select-</option>
+                    <option value="orange">orange(politics)</option>
+                    <option value="blue">blue(National)</option>
+                    <option value="red">red(International)</option>
+                    <option value="salad">salad(Business)</option>
+                    <option value="purple">purple(Sports)</option>
+                    <option value="yellow">yellow(Entertainment)</option>
+                    <option value="light-blue">light-blue(Art & Culture)</option>
+                    <option value="violet">violet(Science & Tech)</option>
+                    <option value="violet">yellow(Helth & Life Style)</option>
+                </select>
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" id="" style="min-height:300px"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datetime" class="control-label"></label>
+                <input asp-for="Datetime" class="form-control" />
+                <span asp-validation-for="Datetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Keyword" class="control-label"></label>
+                <input asp-for="Keyword" class="form-control" />
+                <span asp-validation-for="Keyword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CaptionPicture" class="control-label"></label>
+                <input asp-for="CaptionPicture" class="form-control" />
+                <span asp-validation-for="CaptionPicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Editor" class="control-label"></label>
+                <select asp-for="Editor" class="form-control">
+                    <option value="Yes">-Select-</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <span asp-validation-for="Editor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureNews" class="control-label"></label>
+                <select asp-for="FeatureNews" class="form-control">
+                    <option>-Select-</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+                <span asp-validation-for="FeatureNews" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SubFeatureNews" class="control-label"></label>
+                <select asp-for="SubFeatureNews" class="form-control">
+                    <option>-Select-</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+                <span asp-validation-for="SubFeatureNews" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SlideShow" class="control-label"></label>
+                <select asp-for="SlideShow" class="form-control">
+                    <option></option>
+                    <option>active</option>
+                </select>
+                <span asp-validation-for="SlideShow" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HotNews" class="control-label"></label>
+                <select asp-for="HotNews" class="form-control">
+                    <option value="Yes">-Select-</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <span asp-validation-for="HotNews" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

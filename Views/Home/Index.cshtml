@@ -1,0 +1,978 @@
+﻿@model IEnumerable<BangladeshToday.Models.Newsinfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" ng-app="BangladeshToday">
+<head>
+    <title>The Morning Bell</title>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'>
+    @*<script src="~/NewsHome/js/jquery.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/js/angular.min.js"></script>
+    <script src="//code.angularjs.org/snapshot/angular-sanitize.js"></script>
+    <script src="~/js/jquery.collapser.js"></script>
+    <script src="~/NewsHome/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <!-- Css -->
+    <link rel="stylesheet" href="~/NewsHome/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/NewsHome/css/font-icons.css" />
+    <link rel="stylesheet" href="~/NewsHome/css/style.css" />
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="~/NewsHome/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/NewsHome/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/NewsHome/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/NewsHome/img/apple-touch-icon-114x114.png">
+
+
+    <!-- Lazyload -->
+    <script src="js/lazysizes.min.js"></script>
+    <script src="~/js/homePageUsingAngular.js"></script>
+
+    @*LightBox*@
+    <link href="~/lightBox/css/lightbox.css" rel="stylesheet" />
+    <script src="~/lightBox/js/lightbox.js"></script>
+
+    @*Facebook Share Button*@
+    <meta property="og:url" content="http://mizanur919-001-site1.itempurl.com/#!/details" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Morning Bell" />
+    <meta property="og:description" content="We bring you the best latest news and views from around the world. Please stay with us to get most hottest news update." />
+    <meta property="og:image" content="http://mizanur919-001-site1.itempurl.com/#!/details" />
+
+
+    <style>
+        .sub_feature_news:nth-child(2) {
+            margin-top: 30px;
+        }
+
+        .btnReadMore {
+            background: #0098d0;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 2px;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light" ng-controller="TestController">
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=1919533308114080&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <!-- Preloader -->
+    <div class="loader-mask">
+        <div class="loader">
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Bg Overlay -->
+    <div class="content-overlay"></div>
+
+    <!-- Sidenav -->
+    <header class="sidenav" id="sidenav">
+
+        <!-- close -->
+        <div class="sidenav__close">
+            <button class="sidenav__close-button" id="sidenav__close-button" aria-label="close sidenav">
+                <i class="ui-close sidenav__close-icon"></i>
+            </button>
+        </div>
+
+        <!-- Nav -->
+        <nav class="sidenav__menu-container">
+            <ul class="sidenav__menu" role="menubar">
+
+                <li class="active">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/" ng-click="showDangerousDiv()" class="sidenav__menu-link sidenav__menu-link-category sidenav__menu-link--blue" style="color:#fff; font-size: 15px;">Home</a>
+                </li>
+
+                <li ng-repeat="cat in Categories">
+                    <a style="text-transform:capitalize;" href="/#!/Category?cat={{cat.category}}" class="sidenav__menu-link sidenav__menu-link-category sidenav__menu-link--{{cat.color}}" ng-click="GetNewsByCategory(cat.category)">{{cat.category}}</a>
+                </li>
+
+                <li>
+                    <a asp-controller="Login" class="sidenav__menu-link sidenav__menu-link-category sidenav__menu-link--blue" data-target="#myModal" target="_blank" asp-action="UserLogin" style="color:#fff; font-size:15px">LogIn</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="socials sidenav__socials">
+            <a class="social social-facebook" href="https://www.facebook.com/Mornig-Bell-2194514520808006/" target="_blank" aria-label="facebook">
+                <i class="ui-facebook"></i>
+            </a>
+            <a class="social social-twitter" href="https://twitter.com/TheMorningBell2" target="_blank" aria-label="twitter">
+                <i class="ui-twitter"></i>
+            </a>
+            <a class="social social-youtube" href="https://www.youtube.com/channel/UCRzcphrmfNpsCPkudThvwxQ" target="_blank" aria-label="youtube">
+                <i class="ui-youtube"></i>
+            </a>
+            @*<a class="social social-google-plus" href="#" target="_blank" aria-label="google">
+                    <i class="ui-google"></i>
+                </a>
+                <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
+                    <i class="ui-youtube"></i>
+                </a>
+                <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
+                    <i class="ui-instagram"></i>*@
+            </a>
+        </div>
+    </header> <!-- end sidenav -->
+
+    <main class="main oh" id="main">
+
+        <!-- Navigation -->
+        <header class="nav">
+
+            <div class="nav__holder nav--sticky">
+
+                @*style="background-color: #6c5ce7; "*@
+
+                <div class="container relative">
+                    <div class="flex-parent">
+
+                        <!-- Side Menu Button -->
+                        <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
+                            <span class="nav-icon-toggle__box">
+                                <span class="nav-icon-toggle__inner"></span>
+                            </span>
+                        </button> <!-- end Side menu button -->
+                        <!-- Mobile logo -->
+                        <a href="http://mizanur919-001-site1.itempurl.com" class="logo logo--mobile d-lg-none">
+                            <img class="logo__img" src="~/Site_Logo/logo_mobile.png" srcset="~/Site_Logo/logo_mobile.png 1x, ~/Site_Logo/logo_mobile.png 2x" alt="logo">
+                        </a>
+
+                        <!-- Nav-wrap -->
+                        <nav class="flex-child nav__wrap d-none d-lg-block">
+                            <ul class="nav__menu">
+
+                                <li class="active">
+                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/" ng-click="showDangerousDiv()" class="active" style="color:#fff; font-size:11px">Home</a>
+                                </li>
+
+                                <li ng-repeat="cat in Categories">
+                                    <a style="text-transform:capitalize; font-size:11px; color:#fff; line-height: 19pt;" href="/#!/Category?cat={{cat.category}}" class="sidenav__menu-link sidenav__menu-link-category sidenav__menu-link--{{cat.color}}" ng-click="GetNewsByCategory(cat.category)">{{cat.category}}</a>
+                                </li>
+
+                                <li>
+                                    <a asp-controller="Login" data-target="#myModal" target="_blank" asp-action="UserLogin" style="color:#fff; font-size:11px">LogIn</a>
+                                </li>
+
+
+                            </ul> <!-- end menu -->
+                        </nav> <!-- end nav-wrap -->
+                        <!-- Nav Right -->
+                        <div class="nav__right nav--align-right d-lg-flex">
+
+                            <!-- Socials -->
+                            <div class="nav__right-item socials nav__socials d-none d-lg-flex">
+                                <a class="social social-facebook social--nobase" href="https://www.facebook.com/Mornig-Bell-2194514520808006/" target="_blank" aria-label="facebook" style="color:#fff">
+                                    <i class="ui-facebook"></i>
+                                </a>
+                                <a class="social social-twitter social--nobase" href="https://twitter.com/TheMorningBell2" target="_blank" aria-label="twitter" style="color:#fff">
+                                    <i class="ui-twitter"></i>
+                                </a>
+                                @*<a class="social social-google social--nobase" href="#" target="_blank" aria-label="google" style="color:#fff">
+                                        <i class="ui-google"></i>
+                                    </a>
+                                    <a class="social social-youtube social--nobase" href="#" target="_blank" aria-label="youtube" style="color:#fff">
+                                        <i class="ui-youtube"></i>
+                                    </a>
+                                    <a class="social social-instagram social--nobase" href="#" target="_blank" aria-label="instagram" style="color:#fff">
+                                        <i class="ui-instagram"></i></a>*@
+
+                            </div>
+
+                            <!-- Search -->
+                            <div class="nav__right-item nav__search">
+                                <a href="#" class="nav__search-trigger" id="nav__search-trigger">
+                                    <i class="ui-search nav__search-trigger-icon"></i>
+                                </a>
+                                <div class="nav__search-box" id="nav__search-box">
+                                    <form class="nav__search-form">
+                                        <input type="text" placeholder="Search an article" class="nav__search-input">
+                                        <button type="submit" class="search-button btn btn-lg btn-color btn-button">
+                                            <i class="ui-search nav__search-icon"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div> <!-- end nav right -->
+
+                    </div> <!-- end flex-parent -->
+                </div> <!-- end container -->
+
+            </div>
+        </header> <!-- end navigation -->
+        <!-- Header -->
+        <div class="header">
+            <div class="container">
+                <div class="flex-parent align-items-center">
+
+                    <!-- Logo -->
+                    <a href="http://mizanur919-001-site1.itempurl.com" class="logo d-none d-lg-block">
+                        <img class="logo__img" style="height:45px" src="~/Site_Logo/Nishat.png" srcset="~/Site_Logo/Nishat.png 1x, ~/Site_Logo/Nishat.png 2x" alt="logo">
+                    </a>
+
+                    <!-- Ad Banner 728 -->
+                    <div class="text-center">
+                        <a href="#">
+                            <img src="~/NewsHome/img/blog/placeholder_leaderboard.jpg" alt="">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end header -->
+        <!-- Trending Now -->
+        <div class="trending-now">
+            <div class="container relative">
+                <span class="trending-now__label">Trending</span>
+                <ul class="newsticker">
+                    <li ng-repeat="gln in GetLatestNews | limitTo:15" class="newsticker__item"><a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.newsserial)" class="newsticker__item-url">{{gln.title}}</a></li>
+                </ul>
+                <div class="newsticker-buttons">
+                    <button class="newsticker-button newsticker-button--prev" id="newsticker-button--prev" aria-label="next article"><i class="ui-arrow-left"></i></button>
+                    <button class="newsticker-button newsticker-button--next" id="newsticker-button--next" aria-label="previous article"><i class="ui-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="featured-posts-grid bg-dark" ng-hide="myValue">
+            <div class="container clearfix">
+
+                <!-- Large post slider -->
+                <div class="featured-posts-grid__item featured-posts-grid__item--lg">
+                    <div id="owl-hero-grid" class="owl-carousel owl-theme owl-carousel--dots-inside">
+                        @foreach (var item in ViewBag.FeatureNews)
+                        {
+                            <article class="entry featured-posts-grid__entry">
+                                <div class="thumb-bg-holder owl-lazy" data-src="featuresNews/@item.CaptionPicture">
+                                    <img src="featuresNews/@item.CaptionPicture" alt="" class="d-none">
+                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle('@item.Newsserial')" class="thumb-url"></a>
+                                    <div class="bottom-gradient"></div>
+                                </div>
+
+                                <div class="thumb-text-holder">
+                                    <a href="single-post.html" class="entry__meta-category entry__meta-category-color entry__meta-category-color--salad">@item.Category</a>
+                                    <h2 class="thumb-entry-title">
+                                        <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle('@item.Newsserial')">@item.Title</a>
+                                    </h2>
+                                </div>
+                            </article>
+                        }
+                    </div> <!-- end owl slider -->
+                </div> <!-- end large post slider -->
+
+
+
+                <div class="featured-posts-grid__item featured-posts-grid__item--sm">
+                    @foreach (var item in ViewBag.SubFeatureNews)
+                    {
+                        <article class="entry featured-posts-grid__entry sub_feature_news">
+                            <div class="thumb-bg-holder" style="background-image: url(featuresNews/@item.CaptionPicture);">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle('@item.Newsserial')" class="thumb-url"></a>
+                                <div class="bottom-gradient"></div>
+                            </div>
+
+                            <div class="thumb-text-holder">
+                                <h2 class="thumb-entry-title thumb-entry-title--sm">
+                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle('@item.Newsserial')">@item.Title</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">@item.Author</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        @item.Datetime
+                                    </li>
+                                    <li class="entry__meta-comments">
+                                        <i class="ui-comments"></i>
+                                        <a href="#">115</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    }
+                </div>
+
+                @*<div class="featured-posts-grid__item featured-posts-grid__item--sm">
+                        <article class="entry featured-posts-grid__entry">
+                            <div class="thumb-bg-holder" style="background-image: url(img/blog/featured_grid_3.jpg);">
+                                <a href="single-post.html" class="thumb-url"></a>
+                                <div class="bottom-gradient"></div>
+                            </div>
+
+                            <div class="thumb-text-holder">
+                                <h2 class="thumb-entry-title thumb-entry-title--sm">
+                                    <a href="single-post.html">Experience the Grand Canyon National Park</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">DeoThemes</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        21 October, 2017
+                                    </li>
+                                    <li class="entry__meta-comments">
+                                        <i class="ui-comments"></i>
+                                        <a href="#">115</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>*@
+
+            </div>
+        </section> <!-- end featured posts grid -->
+
+
+
+
+
+
+
+
+
+
+
+        <div class="main-container container mt-40" id="main-container">
+
+            <!-- Content -->
+            <div class="row">
+
+                <!-- Posts -->
+                <div class="col-lg-8 blog__content mb-30">
+
+                    <ng-view></ng-view>
+
+                </div> <!-- end posts -->
+                <!-- Sidebar -->
+                <aside class="col-lg-4 sidebar sidebar--right">
+
+                    <!-- Widget Social Subscribers -->
+                    <div class="widget widget-social-subscribers">
+                        <ul class="widget-social-subscribers__list">
+                            <li class="widget-social-subscribers__item">
+                                <a href="https://www.facebook.com/Mornig-Bell-2194514520808006/?modal=admin_todo_tour" target="_blank" class="widget-social-subscribers__url widget-social-subscribers--facebook">
+                                    <i class="ui-facebook widget-social-subscribers__icon"></i>
+                                    <span class="widget-social-subscribers__number">15369</span>
+                                    <span class="widget-social-subscribers__text">Fans</span>
+                                </a>
+                            </li>
+                            <li class="widget-social-subscribers__item">
+                                <a href="https://twitter.com/TheMorningBell2" target="_blank" class="widget-social-subscribers__url widget-social-subscribers--twitter">
+                                    <i class="ui-twitter widget-social-subscribers__icon"></i>
+                                    <span class="widget-social-subscribers__number">15369</span>
+                                    <span class="widget-social-subscribers__text">Followers</span>
+                                </a>
+                            </li>
+                            @*<li class="widget-social-subscribers__item">
+                                    <a href="#" class="widget-social-subscribers__url widget-social-subscribers--google">
+                                        <i class="ui-google widget-social-subscribers__icon"></i>
+                                        <span class="widget-social-subscribers__number">15369</span>
+                                        <span class="widget-social-subscribers__text">Followers</span>
+                                    </a>
+                                </li>*@
+                            @*<li class="widget-social-subscribers__item">
+                                    <a href="#" class="widget-social-subscribers__url widget-social-subscribers--rss">
+                                        <i class="ui-rss widget-social-subscribers__icon"></i>
+                                        <span class="widget-social-subscribers__number">15369</span>
+                                        <span class="widget-social-subscribers__text">Subscribers</span>
+                                    </a>
+                                </li>*@
+                            <li class="widget-social-subscribers__item">
+                                <a href="https://www.youtube.com/channel/UCRzcphrmfNpsCPkudThvwxQ" target="_blank" class="widget-social-subscribers__url widget-social-subscribers--youtube">
+                                    <i class="ui-youtube widget-social-subscribers__icon"></i>
+                                    <span class="widget-social-subscribers__number">15369</span>
+                                    <span class="widget-social-subscribers__text">Subscribers</span>
+                                </a>
+                            </li>
+                            @*<li class="widget-social-subscribers__item">
+                                    <a href="#" class="widget-social-subscribers__url widget-social-subscribers--instagram">
+                                        <i class="ui-instagram widget-social-subscribers__icon"></i>
+                                        <span class="widget-social-subscribers__number">15369</span>
+                                        <span class="widget-social-subscribers__text">Followers</span>
+                                    </a>
+                                </li>*@
+                        </ul>
+                    </div>
+
+                    <!-- Widget Newsletter -->
+                    <div class="widget widget_mc4wp_form_widget">
+                        <h4 class="widget-title">Subscribe for news</h4>
+                        <form class="mc4wp-form" method="post">
+                            <div class="mc4wp-form-fields">
+                                <p>
+                                    <input type="email" name="EMAIL" placeholder="Your email" required="">
+                                </p>
+                                <p>
+                                    <input type="submit" class="btn btn-lg btn-color" value="Subscribe">
+                                </p>
+                            </div>
+                        </form>
+                    </div> <!-- end widget newsletter -->
+                    <!-- Widget Popular/Latest Posts -->
+                    <div class="widget widget-tabpost">
+                        <div class="tabs widget-tabpost__tabs">
+                            <ul class="tabs__list widget-tabpost__tabs-list">
+                                <li class="tabs__item widget-tabpost__tabs-item tabs__item--active">
+                                    <a href="#tab-trending" class="tabs__url tabs__trigger widget-tabpost__tabs-url">More News</a>
+                                </li>
+                                <li class="tabs__item widget-tabpost__tabs-item">
+                                    <a href="#tab-latest" class="tabs__url tabs__trigger widget-tabpost__tabs-url">Latest</a>
+                                </li>
+                                <li class="tabs__item widget-tabpost__tabs-item">
+                                    <a href="#tab-comments" class="tabs__url tabs__trigger widget-tabpost__tabs-url">Comments</a>
+                                </li>
+                            </ul> <!-- end tabs -->
+                            <!-- tab content -->
+                            <div class="tabs__content tabs__content-trigger widget-tabpost__tabs-content">
+
+                                <div class="tabs__content-pane tabs__content-pane--active" id="tab-trending">
+                                    <ul class="post-list-small">
+                                        <li class="post-list-small__item" ng-repeat="mn in MoreNews | limitTo:4">
+                                            <article class="post-list-small__entry clearfix _news">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(mn.newsserial)">
+                                                            <img data-src="featuresNews/{{mn.captionPicture}}" src="featuresNews/{{mn.captionPicture}}" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(mn.newsserial)">{{mn.title}}</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            {{mn.datetime}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tabs__content-pane" id="tab-latest">
+                                    <ul class="post-list-small">
+                                        <li class="post-list-small__item" ng-repeat="cwn in CategorywiseNews">
+                                            <article class="post-list-small__entry clearfix">
+
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(cwn.newsserial)">
+                                                            <img data-src="featuresNews/{{cwn.captionPicture}}" src="featuresNews/{{cwn.captionPicture}}" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(cwn.newsserial)">{{cwn.title}}</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            {{cwn.datetime}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tabs__content-pane" id="tab-comments">
+                                    <ul class="post-list-small">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="single-post.html">
+                                                            <img data-src="~/NewsHome/img/blog/popular_post_3.jpg" src="~/NewsHome/img/empty.png" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post.html">June in Africa: Taxi wars, smarter cities and increased investments</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            21 October, 2017
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="single-post.html">
+                                                            <img data-src="~/NewsHome/img/blog/popular_post_1.jpg" src="~/NewsHome/img/empty.png" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post.html">Google is fixing its troubling burger emoji in Android 8.1</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            21 October, 2017
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="single-post.html">
+                                                            <img data-src="~/NewsHome/img/blog/popular_post_2.jpg" src="~/NewsHome/img/empty.png" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post.html">How Meditation Can Transform Your Business</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            21 October, 2017
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-75">
+                                                        <a href="single-post.html">
+                                                            <img data-src="~/NewsHome/img/blog/popular_post_4.jpg" src="~/NewsHome/img/empty.png" alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post.html">PUBG Desert Map Finally Revealed, Here Are All The Details</a>
+                                                    </h3>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-date">
+                                                            <i class="ui-date"></i>
+                                                            21 October, 2017
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div> <!-- end tab content -->
+                        </div> <!-- end tabs -->
+                    </div> <!-- end widget popular/latest posts -->
+                    <!-- Widget Ad 300 -->
+                    <div class="widget widget_media_image">
+                        <a href="#">
+                            <img src="~/NewsHome/img/blog/placeholder_300.jpg" alt="">
+                        </a>
+                    </div> <!-- end widget ad 300 -->
+                    <!-- Widget Socials -->
+                    <div class="widget widget-socials">
+                        <h4 class="widget-title">Follow us</h4>
+                        <div class="socials">
+                            <a class="social social-facebook social--large" href="https://www.facebook.com/Mornig-Bell-2194514520808006/" title="facebook" target="_blank" aria-label="facebook">
+                                <i class="ui-facebook"></i>
+                            </a>
+                            <!--
+                            -->
+                            <a class="social social-twitter social--large" href="https://twitter.com/TheMorningBell2" title="twitter" target="_blank" aria-label="twitter">
+                                <i class="ui-twitter"></i>
+                            </a>
+                            <!--
+                            -->
+                            @*<a class="social social-google-plus social--large" href="#" title="google" target="_blank" aria-label="google">
+                                    <i class="ui-google"></i>
+                                </a>*@
+                            <!--
+                            -->
+                            @*<a class="social social-instagram social--large" href="#" title="instagram" target="_blank" aria-label="instagram">
+                                    <i class="ui-instagram"></i>
+                                </a>*@
+                            <!--
+                            -->
+                            <a class="social social-youtube social--large" href="https://www.youtube.com/channel/UCRzcphrmfNpsCPkudThvwxQ" title="youtube" target="_blank" aria-label="youtube">
+                                <i class="ui-youtube"></i>
+                            </a>
+                            <!--
+                            -->
+                            @*<a class="social social-rss social--large" href="#" title="rss" target="_blank" aria-label="rss">
+                                    <i class="ui-rss"></i>
+                                </a>*@
+                        </div>
+                    </div> <!-- end widget socials -->
+                    <!-- Widget Twitter -->
+                    @*<div class="widget">
+                            <h4 class="widget-title">Our tweets</h4>
+                            <div class="tweets-container">
+                                <div id="tweets"></div>
+                            </div>
+                        </div>*@
+
+                    <!-- Widget Ad 125 -->
+                    <div class="widget widget-gallery-sm">
+                        <ul class="widget-gallery-sm__list">
+                            <li class="widget-gallery-sm__item">
+                                <a href="#"><img src="NewsHome/img/blog/placeholder_125.jpg" alt=""></a>
+                            </li>
+                            <li class="widget-gallery-sm__item">
+                                <a href="#"><img src="NewsHome/img/blog/placeholder_125.jpg" alt=""></a>
+                            </li>
+                            <li class="widget-gallery-sm__item">
+                                <a href="#"><img src="NewsHome/img/blog/placeholder_125.jpg" alt=""></a>
+                            </li>
+                            <li class="widget-gallery-sm__item">
+                                <a href="#"><img src="NewsHome/img/blog/placeholder_125.jpg" alt=""></a>
+                            </li>
+                        </ul>
+                    </div> <!-- end widget ad 300 -->
+                    <!-- Widget Carousel -->
+                    <div class="widget">
+                        <h4 class="widget-title">Photo Gallery</h4>
+                        <div id="owl-single" class="owl-carousel owl-theme">
+                            @foreach (var item in ViewBag.FeatureNewsByHours)
+                            {
+                                <article class="entry" id="lightgallery">
+                                    <div class="entry__img-holder mb-0">
+                                        <a href="featuresNews/@item.CaptionPicture" data-lightbox="setofimages">
+                                            <div class="thumb-bg-holder">
+                                                <img data-src="featuresNews/@item.CaptionPicture" src="featuresNews/@item.CaptionPicture" class="entry__img owl-lazy" alt="">
+                                                <div class="bottom-gradient"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="thumb-text-holder">
+                                        <h2 class="thumb-entry-title thumb-entry-title--sm">
+                                            <a href="single-post.html">@item.Category</a>
+                                        </h2>
+                                    </div>
+                                </article>
+                            }
+
+
+                        </div>
+                    </div>
+
+                    <!-- Widget Tags -->
+                    <div class="widget widget_tag_cloud">
+                        <h4 class="widget-title">Tags</h4>
+                        <div class="tagcloud">
+                            <a href="#">Magazine</a>
+                            <a href="#">Creative</a>
+                            <a href="#">Responsive</a>
+                            <a href="#">Modern</a>
+                            <a href="#">Tech</a>
+                            <a href="#">WordPress</a>
+                            <a href="#">Website</a>
+                            <a href="#">News</a>
+                        </div>
+                    </div>
+
+
+                    <section class="section mb-20">
+                        <div class="title-wrap">
+                            <h3 class="section-title section-title--sm">Video News</h3>
+                            <div class="carousel-nav">
+                                <button class="carousel-nav__btn carousel-nav__btn--prev" aria-label="previous slide">
+                                    <i class="ui-arrow-left"></i>
+                                </button>
+                                <button class="carousel-nav__btn carousel-nav__btn--next" aria-label="next slide">
+                                    <i class="ui-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- Slider -->
+                        <div id="owl-posts" class="owl-carousel owl-theme">
+                            @foreach (var item in ViewBag.VideoNews)
+                            {
+                                <article class="entry">
+                                    <div class="entry__img-holder">
+                                        <a href="#">
+
+                                            <!--@*<img data-src="Videos/@item.Path" src="Videos/@item.Path" class="entry__img owl-lazy" alt="" />*@-->
+
+                                            <video width="320" height="240" controls>
+                                                <source data-src="Videos/@item.Path" src="Videos/@item.Path" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+
+                                    <div class="entry__body">
+                                        <div class="entry__header">
+                                            <h2 class="entry__title entry__title--sm">
+                                                <a href="single-post.html">@item.Title</a>
+                                            </h2>
+                                            <ul class="entry__meta">
+                                                <li class="entry__meta-date">
+                                                    <i class="ui-date"></i>
+                                                    @item.Datetime
+                                                </li>
+                                                <li class="entry__meta-comments">
+                                                    <i class="ui-comments"></i>
+                                                    <a href="#">115</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
+
+
+
+                            }
+
+
+
+
+                            <!--@*<article class="entry">
+                                <div class="entry__img-holder">
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-75">
+                                            <img data-src="~/NewsHome/img/blog/carousel_img_2.jpg" src="~/NewsHome/img/blog/carousel_img_2.jpg" class="entry__img owl-lazy" alt="" />
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="entry__body">
+                                    <div class="entry__header">
+                                        <h2 class="entry__title entry__title--sm">
+                                            <a href="single-post.html">What Fashion Editors Are Buying for Every Kid on Our Holiday List</a>
+                                        </h2>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-date">
+                                                <i class="ui-date"></i>
+                                                21 October, 2017
+                                            </li>
+                                            <li class="entry__meta-comments">
+                                                <i class="ui-comments"></i>
+                                                <a href="#">115</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="entry">
+                                <div class="entry__img-holder">
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-75">
+                                            <img data-src="~/NewsHome/img/blog/carousel_img_3.jpg" src="~/NewsHome/img/blog/carousel_img_3.jpg" class="entry__img owl-lazy" alt="" />
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="entry__body">
+                                    <div class="entry__header">
+                                        <h2 class="entry__title entry__title--sm">
+                                            <a href="single-post.html">Why Coach's Cute New Holiday Collab Is Unexpected</a>
+                                        </h2>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-date">
+                                                <i class="ui-date"></i>
+                                                21 October, 2017
+                                            </li>
+                                            <li class="entry__meta-comments">
+                                                <i class="ui-comments"></i>
+                                                <a href="#">115</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>*@-->
+                            </div> <!-- end slider -->
+
+                        </section>
+
+
+                    </aside> <!-- end sidebar -->
+
+                </div> <!-- end content -->
+            </div> <!-- end main container -->
+            <!-- Footer -->
+            <footer class="footer footer--dark">
+                <div class="container">
+                    <div class="footer__widgets">
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="widget">
+                                    <a href="http://mizanur919-001-site1.itempurl.com">
+                                        <img src="~/Site_Logo/logo_mobile.png" srcset="~/Site_Logo/logo_mobile.png 1x, ~/Site_Logo/logo_mobile.png 2x" class="logo__img" alt="">
+                                    </a>
+                                    <p class="mt-20">We bring you the best latest news and views from around the world. Please stay with us to get most hottest news update.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <h4 class="widget-title">Latest Posts</h4>
+                                <ul class="post-list-small">
+                                    <li class="post-list-small__item" ng-repeat="gln in GetLatestNews | limitTo:2">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-75">
+                                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.Newsserial)">
+                                                        <img data-src="featuresNews/{{gln.captionPicture}}" src="featuresNews/{{gln.captionPicture}}" alt="" class="lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.Newsserial)">{{gln.title}}</a>
+                                                </h3>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-date">
+                                                        <i class="ui-date"></i>
+                                                        {{gln.datetime}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="widget widget__newsletter">
+                                    <h4 class="widget-title">Follow us</h4>
+
+                                    <div class="socials mb-20">
+                                        <a href="https://www.facebook.com/Mornig-Bell-2194514520808006/" target="_blank" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
+                                        <a href="https://twitter.com/TheMorningBell2" target="_blank" class="social social-twitter" aria-label="twitter"><i class="ui-twitter"></i></a>
+                                        <a href="https://www.youtube.com/channel/UCRzcphrmfNpsCPkudThvwxQ" target="_blank" class="social social-youtube" aria-label="youtube"><i class="ui-youtube"></i></a>
+                                        @*<a href="#" class="social social-google-plus" aria-label="google+"><i class="ui-google"></i></a>*@
+                                        @*<a href="#" class="social social-instagram" aria-label="instagram"><i class="ui-instagram"></i></a>*@
+                                    </div>
+
+                                    <form class="mc4wp-form" method="post">
+                                        <div class="mc4wp-form-fields">
+                                            <p>
+                                                <input type="email" name="EMAIL" placeholder="Your email" required="">
+                                            </p>
+                                            <p>
+                                                <input type="submit" class="btn btn-lg btn-color" value="Subscribe">
+                                            </p>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="widget widget_nav_menu">
+                                    <h4 class="widget-title">Useful Links</h4>
+                                    <ul>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end container -->
+
+                <div class="footer__bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7 order-lg-2 text-right text-md-center">
+                                <div class="widget widget_nav_menu">
+                                    <div>
+                                        <ul>
+                                            <li><a href="#">Terms</a></li>
+                                            <li><a href="#">Privacy</a></li>
+                                            <li><a href="#">Advertise</a></li>
+                                            <li><a href="#">Affiliates</a></li>
+                                            <li><a href="#">Newsletter</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 order-lg-1 text-md-center">
+                                <span class="copyright">
+                                    &copy; 2018 The Morning Bell | Made by <a href="http://mizanur919-001-site1.itempurl.com/">The Morning Bell</a>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> <!-- end bottom footer -->
+            </footer> <!-- end footer -->
+
+            <div id="back-to-top">
+                <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
+            </div>
+
+        </main> <!-- end main-wrapper -->
+        <!-- jQuery Scripts -->
+
+        <script src="~/NewsHome/js/easing.min.js"></script>
+        <script src="~/NewsHome/js/owl-carousel.min.js"></script>
+        <script src="~/NewsHome/js/twitterFetcher_min.js"></script>
+        <script src="~/NewsHome/js/jquery.newsTicker.min.js"></script>
+        <script src="~/NewsHome/js/modernizr.min.js"></script>
+        <script src="~/NewsHome/js/scripts.js"></script>
+        <script src="~/js/site.js"></script>
+
+
+        <script>
+
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+            })
+
+            $(document).ready(function () {
+            })
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,50 @@
+﻿@model BangladeshToday.Account.UserDetails
+@{
+    ViewData["Title"] = "UserLogin";
+}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" style="margin-top:25px;">
+        @if (TempData["Success"] != null)
+        {
+            <p class="alert alert-success">@TempData["Success"]  <a asp-action="UserLogin">Click here to login</a></p>
+        }
+        @if (TempData["Fail"] != null)
+        {
+            <p class="alert alert-danger">@TempData["Fail"]</p>
+        }
+        <h2 style=" font-family: tahoma; margin-bottom: 25px; font-family: tahoma;">Sign Up</h2>
+        <form asp-action="RegisterUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="FirstName" class="control-label"></label>*@
+                <input asp-for="FirstName" class="form-control" placeholder="First Name"/>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="LastName" class="form-control"  placeholder="Last Name"/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="UserID" class="form-control"  placeholder="Email"/>
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Password" class="form-control"  placeholder="Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-default btn-primary" />
+            </div>
+            <label>Already Member?</label>
+            <div>
+                <a asp-action="UserLogin">Back to User Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

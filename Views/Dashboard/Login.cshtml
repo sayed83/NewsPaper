@@ -1,0 +1,99 @@
+﻿@*<div>
+        Name:  <input type="text" name="loginData.Username" /><br />
+        Password: <input type="password" name="loginData.Password" /><br />
+        <input type="submit" value="Login" />
+    </div>*@
+
+
+@model BangladeshToday.ViewModels.LoginData;
+@{
+    Layout = null;
+}
+
+    @*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Login</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="~/css/login.css" rel="stylesheet" />
+    </head>
+    <body>
+        @using (Html.BeginForm())
+        {
+            <div class="container">
+                <div class="login-form">
+                    <div class="main-div">
+                        <div class="panel">
+                            <h2>Admin Login</h2>
+                            <p>Please enter your email and password</p>
+                        </div>
+                        <form id="Login">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inputEmail" name="loginData.Username" placeholder="Email Address">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="loginData.Password" id="inputPassword" placeholder="Password">
+                            </div>
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </form>
+                    </div>
+                </div><br /><br />
+                <div>
+                    <p>UserName: mizan</p><br />
+                    <p>Password: 12345</p>
+                </div>
+            </div>
+        }
+
+
+
+
+    </body>
+    </html>*@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="login-page">
+            <div class="form">
+                @*<form class="register-form">
+                    <input type="text" placeholder="name" />
+                    <input type="password" placeholder="password" />
+                    <input type="text" placeholder="email address" />
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form>*@
+                <form class="login-form">
+                    <input type="text" name="loginData.Username" placeholder="username" />
+                    <input type="password" name="loginData.Password" placeholder="password" />
+                    <button type="submit" value="Login" >Log In</button>
+                    @*<p class="message">Not registered? <a href="#">Create an account</a></p>*@
+                </form>
+            </div>
+        </div>
+    }
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.message a').click(function () {
+                $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+            });
+        });
+    </script>
+</body>
+</html>

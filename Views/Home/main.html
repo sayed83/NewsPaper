@@ -1,0 +1,800 @@
+﻿<!-- Hot News -->
+<section class="section tab-post mb-10">
+    <div class="title-wrap">
+        <h3 class="section-title">Hot News</h3>
+
+        <div class="tabs tab-post__tabs">
+            <ul class="tabs__list">
+                <li class="tabs__item">
+                    <a href="#tab-all" class="tabs__trigger">All</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-world" class="tabs__trigger">Business</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-business" class="tabs__trigger">National</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-politics" class="tabs__trigger">Inernational</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-marketing" class="tabs__trigger">Entertainment</a>
+                </li>
+            </ul> <!-- end tabs -->
+        </div>
+    </div>
+
+    <!-- tab content -->
+    <div class="tabs__content tabs__content-trigger tab-post__tabs-content">
+
+
+        <!--@*All Category*@-->
+        <div class="tabs__content-pane tabs__content-pane--active" id="tab-all">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="feeNews in HotNews | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{feeNews.captionPicture}}" src="featuresNews/{{feeNews.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{feeNews.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{feeNews.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{feeNews.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{feeNews.datetime}}
+                                    </li>
+                                    <li class="entry__meta-comments">
+                                        <i class="ui-comments"></i>
+                                        <a href="#">115</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="feeNews.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 1 -->
+        @*Business Category*@
+        <div class="tabs__content-pane" id="tab-world">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gbn in GetBusinessCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gbn.captionPicture}}" src="featuresNews/{{gbn.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gbn.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gbn.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gbn.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gbn.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gbn.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 2 -->
+        @*National Category*@
+        <div class="tabs__content-pane" id="tab-business">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gnc in GetNationalCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gnc.captionPicture}}" src="featuresNews/{{gnc.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gnc.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gnc.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gnc.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gnc.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gnc.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 3 -->
+        @*International Category*@
+        <div class="tabs__content-pane" id="tab-politics">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="ginc in GetInternationalCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{ginc.captionPicture}}" src="featuresNews/{{ginc.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{ginc.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{ginc.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{ginc.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{ginc.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="ginc.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 4 -->
+        @*Entertainment Category*@
+        <div class="tabs__content-pane" id="tab-marketing">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gec in GetEntertainmentCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gec.captionPicture}}" src="featuresNews/{{gec.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gec.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gec.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gec.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gec.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gec.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 5 -->
+    </div> <!-- end tab content -->
+</section> <!-- end hot news -->
+<!-- Latest News -->
+<section class="section">
+    <div class="title-wrap">
+        <h3 class="section-title">Latest News</h3>
+        <a href="#" class="all-posts-url">View All</a>
+    </div>
+
+    <article class="entry post-list" ng-repeat="gln in GetLatestNews | limitTo:3">
+        <div class="entry__img-holder post-list__img-holder">
+            <a href="single-post.html">
+                <div class="thumb-container thumb-75">
+                    <img data-src="featuresNews/{{gln.captionPicture}}" src="featuresNews/{{gln.captionPicture}}" class="entry__img lazyload" alt="">
+                </div>
+            </a>
+        </div>
+
+        <div class="entry__body post-list__body">
+            <div class="entry__header">
+                <a href="#" class="entry__meta-category">{{gln.category}}</a>
+                <h2 class="entry__title">
+                    <a href="single-post.html">{{gln.title}}</a>
+                </h2>
+                <ul class="entry__meta">
+                    <li class="entry__meta-author">
+                        <i class="ui-author"></i>
+                        <a href="#">{{gln.author}}</a>
+                    </li>
+                    <li class="entry__meta-date">
+                        <i class="ui-date"></i>
+                        {{gln.datetime}}
+                    </li>
+                    <li class="entry__meta-comments">
+                        <i class="ui-comments"></i>
+                        <a href="#">115</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="entry__excerpt">
+                <p ng-bind-html="gln.description" id="mytext" ng-if="gln.description.length > 20 ? gln.description.substr(0, gln.description.lastIndexOf(' ', 97)) + '...' : gln.description">
+                </p>
+            </div>
+        </div>
+    </article>
+
+</section> <!-- end latest news -->
+<!-- Ad Banner 728 -->
+<div class="text-center pb-40">
+    <a href="#">
+        <img src="~/NewsHome/img/blog/placeholder_leaderboard.jpg" alt="">
+    </a>
+</div>
+
+<!-- Editor's Picks -->
+<section class="section editors-picks mb-20">
+    <div class="title-wrap">
+        <h3 class="section-title">Editor's Picks</h3>
+        <a href="#" class="all-posts-url">View All</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <article class="entry" ng-repeat="edn in EditorPicks | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="single-post.html">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{edn.captionPicture}}" src="featuresNews/{{edn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <a href="#" class="entry__meta-category">science</a>
+                        <h2 class="entry__title">
+                            <a href="single-post.html">{{edn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{edn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{edn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="edn.description" id="mytext"></p>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-5">
+            <ul class="post-list-small">
+                <li class="post-list-small__item" ng-repeat="edn in EditorPicks | limitTo:6">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">{{edn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{edn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                @*
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">Bill Gates's 5 Favorite Books of 2017</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">Sheryl Sandberg's 6 Steps to Make Sure Everyone Feels Safe at Work</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">Elon Musk May Be Sending a Tesla Roadster to Space on a SpaceX Rocket</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">GoPro Accidentally Left In Path of Lava and Incredible Footage Survives</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">The One Goal Every Business Should Have, But Almost None Prioritize</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+</section> <!-- end editors picks -->
+<!-- Posts from categories -->
+<section class="section mb-0">
+    <div class="row">
+
+
+
+        <!-- Politics -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--orange">
+                <h3 class="section-title section-title--sm">Politics</h3>
+            </div>
+            <article class="entry" ng-repeat="pl in GetPoliticsCategory | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="single-post.html">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{pl.captionPicture}}" src="featuresNews/{{pl.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="single-post.html">{{pl.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{pl.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{pl.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="pl.description">{{pl.description}}</p>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="pl in GetPoliticsCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">{{pl.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{pl.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Politics -->
+        <!-- Sports -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--violet">
+                <h3 class="section-title section-title--sm">Sports</h3>
+            </div>
+            <article class="entry" ng-repeat="sp in GetSportsCategory |limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="single-post.html">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{sp.captionPicture}}" src="featuresNews/{{sp.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="single-post.html">{{sp.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{sp.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{sp.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="sp.description"></p>
+                    </div>
+                </div>
+            </article>
+
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="sp in GetSportsCategory |limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">{{sp.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{sp.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Sports -->
+        <!-- Science & Tech -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--light-blue">
+                <h3 class="section-title section-title--sm">Science & Tech</h3>
+            </div>
+            <article class="entry" ng-repeat="stn in GetScienceTechCategory | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="single-post.html">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{stn.captionPicture}}" src="featuresNews/{{stn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="single-post.html">{{stn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{stn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{stn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="stn.description"></p>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="stn in GetScienceTechCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">{{stn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{stn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Science & Tech -->
+        <!-- Art & Culture -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--blue">
+                <h3 class="section-title section-title--sm">Art & Culture</h3>
+            </div>
+            <article class="entry" ng-repeat="acn in GetArtandCultureCategory | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="single-post.html">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{acn.captionPicture}}" src="featuresNews/{{acn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="single-post.html">{{acn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{acn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{acn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="acn.description"></p>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="acn in GetArtandCultureCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">{{acn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{acn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                @*
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">Bill Gates's 5 Favorite Books of 2017</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+                <li class="post-list-small__item">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="single-post.html">Sheryl Sandberg's 6 Steps to Make Sure Everyone Feels Safe at Work</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    21 October, 2017
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>*@
+            </ul>
+        </div> <!-- end Art & Culture -->
+
+    </div>
+</section> <!-- end posts from categories -->
+<!-- Carousel posts -->
+<section class="section mb-20">
+    <div class="title-wrap">
+        <h3 class="section-title section-title--sm">Video News</h3>
+        <div class="carousel-nav">
+            <button class="carousel-nav__btn carousel-nav__btn--prev" aria-label="previous slide">
+                <i class="ui-arrow-left"></i>
+            </button>
+            <button class="carousel-nav__btn carousel-nav__btn--next" aria-label="next slide">
+                <i class="ui-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Slider -->
+    <div id="owl-posts" class="owl-carousel owl-theme">
+        @foreach (var item in ViewBag.VideoNews)
+        {
+        <article class="entry">
+            <div class="entry__img-holder">
+                <a href="single-post.html">
+                    @*<img data-src="Videos/@item.Path" src="Videos/@item.Path" class="entry__img owl-lazy" alt="" />*@
+
+                    <video width="320" height="240" controls>
+                        <source data-src="Videos/@item.Path" src="Videos/@item.Path" type="video/mp4">
+                    </video>
+                </a>
+            </div>
+
+            <div class="entry__body">
+                <div class="entry__header">
+                    <h2 class="entry__title entry__title--sm">
+                        <a href="single-post.html">@item.Title</a>
+                    </h2>
+                    <ul class="entry__meta">
+                        <li class="entry__meta-date">
+                            <i class="ui-date"></i>
+                            @item.Datetime
+                        </li>
+                        <li class="entry__meta-comments">
+                            <i class="ui-comments"></i>
+                            <a href="#">115</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        }
+
+
+
+
+        @*<article class="entry">
+            <div class="entry__img-holder">
+                <a href="single-post.html">
+                    <div class="thumb-container thumb-75">
+                        <img data-src="~/NewsHome/img/blog/carousel_img_2.jpg" src="~/NewsHome/img/blog/carousel_img_2.jpg" class="entry__img owl-lazy" alt="" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="entry__body">
+                <div class="entry__header">
+                    <h2 class="entry__title entry__title--sm">
+                        <a href="single-post.html">What Fashion Editors Are Buying for Every Kid on Our Holiday List</a>
+                    </h2>
+                    <ul class="entry__meta">
+                        <li class="entry__meta-date">
+                            <i class="ui-date"></i>
+                            21 October, 2017
+                        </li>
+                        <li class="entry__meta-comments">
+                            <i class="ui-comments"></i>
+                            <a href="#">115</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <article class="entry">
+            <div class="entry__img-holder">
+                <a href="single-post.html">
+                    <div class="thumb-container thumb-75">
+                        <img data-src="~/NewsHome/img/blog/carousel_img_3.jpg" src="~/NewsHome/img/blog/carousel_img_3.jpg" class="entry__img owl-lazy" alt="" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="entry__body">
+                <div class="entry__header">
+                    <h2 class="entry__title entry__title--sm">
+                        <a href="single-post.html">Why Coach's Cute New Holiday Collab Is Unexpected</a>
+                    </h2>
+                    <ul class="entry__meta">
+                        <li class="entry__meta-date">
+                            <i class="ui-date"></i>
+                            21 October, 2017
+                        </li>
+                        <li class="entry__meta-comments">
+                            <i class="ui-comments"></i>
+                            <a href="#">115</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>*@
+    </div> <!-- end slider -->
+
+</section>

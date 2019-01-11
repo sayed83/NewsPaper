@@ -1,0 +1,631 @@
+﻿<!--<script type="text/javascript">
+    function abc(a) {
+        $("#tab-all").removeClass("tabs__content-pane--active");
+        $("#tab-Business").removeClass("tabs__content-pane--active");
+        $("#tab-National").removeClass("tabs__content-pane--active");
+        $("#tab-Inernational").removeClass("tabs__content-pane--active");
+        $("#tab-Entertainment").removeClass("tabs__content-pane--active");
+        $("#" + a).addClass("tabs__content-pane--active");
+
+        alert("#" + a);
+        $("#" + a).css("background-color", 'blue');
+    }
+</script>-->
+
+
+<!-- Css -->
+<!--<link rel="stylesheet" href="~/NewsHome/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/NewsHome/css/font-icons.css" />
+<link rel="stylesheet" href="~/NewsHome/css/style.css" />-->
+<!-- Trending Now -->
+<!--<div class="trending-now">
+    <div class="container relative">
+        <span class="trending-now__label">Trending</span>
+        <ul class="newsticker">
+            <li ng-repeat="gln in GetLatestNews | limitTo:15" class="newsticker__item"><a  href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.newsserial)" class="newsticker__item-url">{{gln.title}}</a></li>
+        </ul>
+        <div class="newsticker-buttons">
+            <button class="newsticker-button newsticker-button--prev" id="newsticker-button--prev" aria-label="next article"><i class="ui-arrow-left"></i></button>
+            <button class="newsticker-button newsticker-button--next" id="newsticker-button--next" aria-label="previous article"><i class="ui-arrow-right"></i></button>
+        </div>
+    </div>
+</div>-->
+<!-- Hot News -->
+<section class="section tab-post mb-10">
+    <div class="title-wrap">
+        <h3 class="section-title">Hot News</h3>
+
+        <!--<div class="tabs tab-post__tabs">
+            <ul class="tabs__list">
+                <li class="tabs__item">
+                    <a href="#tab-all" onclick="abc('tab-all')" class="tabs__trigger">All</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-Business" onclick="abc('tab-Business')" class="tabs__trigger">Business</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-National" onclick="abc('tab-National')" class="tabs__trigger">National</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-Inernational" onclick="abc('tab-Inernational')" class="tabs__trigger">Inernational</a>
+                </li>
+                <li class="tabs__item">
+                    <a href="#tab-Entertainment" onclick="abc('tab-Entertainment')" class="tabs__trigger">Entertainment</a>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+
+    <!-- tab content -->
+    <div class="tabs__content tabs__content-trigger tab-post__tabs-content">
+
+
+        <!--@*All Category*@-->
+        <div class="tabs__content-pane  tabs__content-pane--active" id="tab-all">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="feeNews in HotNewsShort | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(feeNews.newsserial)">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{feeNews.captionPicture}}" src="featuresNews/{{feeNews.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{feeNews.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(feeNews.newsserial)">{{feeNews.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{feeNews.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{feeNews.datetime}}
+                                    </li>
+                                    <li class="entry__meta-comments">
+                                        <i class="ui-comments"></i>
+                                        <a href="#">115</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="feeNews.description"></p>
+                                <a ng-click='DetailsFromTitle(feeNews.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div> <!-- end pane 1 -->
+
+
+        <!--@*Business Category*@-->
+        <!--<div class="tabs__content-pane" id="tab-Business">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gbn in GetBusinessCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gbn.captionPicture}}" src="featuresNews/{{gbn.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gbn.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gbn.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gbn.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gbn.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gbn.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>--> <!-- end pane 2 -->
+        <!--@*National Category*@-->
+        <!--<div class="tabs__content-pane" id="tab-National">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gnc in GetNationalCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gnc.captionPicture}}" src="featuresNews/{{gnc.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gnc.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gnc.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gnc.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gnc.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gnc.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>--> <!-- end pane 3 -->
+        <!--@*International Category*@-->
+        <!--<div class="tabs__content-pane" id="tab-Inernational">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="ginc in GetInternationalCategory | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{ginc.captionPicture}}" src="featuresNews/{{ginc.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{ginc.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{ginc.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{ginc.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{ginc.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="ginc.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>--> <!-- end pane 4 -->
+        <!--@*Entertainment Category*@-->
+        <!--<div class="tabs__content-pane" id="tab-Entertainment">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="gec in GetEntertainmentCategoryShort | limitTo:2">
+                    <article class="entry">
+                        <div class="entry__img-holder">
+                            <a href="single-post.html">
+                                <div class="thumb-container thumb-75">
+                                    <img data-src="featuresNews/{{gec.captionPicture}}" src="featuresNews/{{gec.captionPicture}}" alt="" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="entry__body">
+                            <div class="entry__header">
+                                <a href="#" class="entry__meta-category">{{gec.category}}</a>
+                                <h2 class="entry__title">
+                                    <a href="single-post.html">{{gec.title}}</a>
+                                </h2>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-author">
+                                        <i class="ui-author"></i>
+                                        <a href="#">{{gec.author}}</a>
+                                    </li>
+                                    <li class="entry__meta-date">
+                                        <i class="ui-date"></i>
+                                        {{gec.datetime}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p ng-bind-html="gec.description"></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>--> <!-- end pane 5 -->
+    </div> <!-- end tab content -->
+</section> <!-- end hot news -->
+<!-- Latest News -->
+<section class="section">
+    <div class="title-wrap">
+        <!--<a href="#" class="all-posts-url">View All</a>-->
+        <h3 class="section-title">Latest News</h3>
+    </div>
+
+    <article class="entry post-list" ng-repeat="gln in GetLatestNewsShort | limitTo:3">
+        <div class="entry__img-holder post-list__img-holder">
+            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.newsserial)">
+                <div class="thumb-container thumb-75">
+                    <img data-src="featuresNews/{{gln.captionPicture}}" src="featuresNews/{{gln.captionPicture}}" class="entry__img lazyload" alt="">
+                </div>
+            </a>
+        </div>
+
+        <div class="entry__body post-list__body">
+            <div class="entry__header">
+                <a href="#" class="entry__meta-category">{{gln.category}}</a>
+                <h2 class="entry__title">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(gln.newsserial)">{{gln.title}}</a>
+                </h2>
+                <ul class="entry__meta">
+                    <li class="entry__meta-author">
+                        <i class="ui-author"></i>
+                        <a href="#">{{gln.author}}</a>
+                    </li>
+                    <li class="entry__meta-date">
+                        <i class="ui-date"></i>
+                        {{gln.datetime}}
+                    </li>
+                    <li class="entry__meta-comments">
+                        <i class="ui-comments"></i>
+                        <a href="#">115</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="entry__excerpt">
+                <p ng-bind-html="gln.description" id="mytext" class="minimize">
+                </p>
+                <a ng-click='DetailsFromTitle(gln.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+            </div>
+        </div>
+    </article>
+
+</section> <!-- end latest news -->
+<!-- Ad Banner 728 -->
+<div class="text-center pb-40">
+    <a href="#">
+        <img src="~/NewsHome/img/blog/placeholder_leaderboard.jpg" alt="">
+    </a>
+</div>
+
+<!-- Editor's Picks -->
+<section class="section editors-picks mb-20">
+    <div class="title-wrap">
+        <h3 class="section-title">Editor's Picks</h3>
+        <!--<a href="#" class="all-posts-url">View All</a>-->
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <article class="entry" ng-repeat="edn in EditorPicksShort | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(edn.newsserial)">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{edn.captionPicture}}" src="featuresNews/{{edn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <a href="#" class="entry__meta-category">science</a>
+                        <h2 class="entry__title">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(edn.newsserial)">{{edn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{edn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{edn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="edn.description" id="mytext"></p>
+                        <a ng-click='DetailsFromTitle(edn.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-5">
+            <ul class="post-list-small">
+                <li class="post-list-small__item" ng-repeat="edn in EditorPicks | limitTo:6">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(edn.newsserial)">{{edn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{edn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section> <!-- end editors picks -->
+<!-- Posts from categories -->
+<section class="section mb-0">
+    <div class="row">
+
+
+
+        <!-- Politics -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--orange">
+                <h3 class="section-title section-title--sm">Politics</h3>
+            </div>
+            <article class="entry" ng-repeat="pl in GetPoliticsCategoryShort | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(pl.newsserial)">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{pl.captionPicture}}" src="featuresNews/{{pl.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(pl.newsserial)">{{pl.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{pl.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{pl.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="pl.description">{{pl.description}}</p>
+                        <a ng-click='DetailsFromTitle(pl.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="pl in GetPoliticsCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(pl.newsserial)">{{pl.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{pl.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Politics -->
+        <!-- Sports -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--violet">
+                <h3 class="section-title section-title--sm">Sports</h3>
+            </div>
+            <article class="entry" ng-repeat="sp in GetSportsCategoryShort |limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(sp.newsserial)">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{sp.captionPicture}}" src="featuresNews/{{sp.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(sp.newsserial)">{{sp.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{sp.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{sp.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="sp.description"></p>
+                        <a ng-click='DetailsFromTitle(sp.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                    </div>
+                </div>
+            </article>
+
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="sp in GetSportsCategory |limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(sp.newsserial)">{{sp.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{sp.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Sports -->
+        <!-- Science & Tech -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--light-blue">
+                <h3 class="section-title section-title--sm">Science & Tech</h3>
+            </div>
+            <article class="entry" ng-repeat="stn in GetScienceTechCategoryShort | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(stn.newsserial)">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{stn.captionPicture}}" src="featuresNews/{{stn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(stn.newsserial)">{{stn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{stn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{stn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="stn.description"></p>
+                        <a ng-click='DetailsFromTitle(stn.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="stn in GetScienceTechCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(stn.newsserial)">{{stn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{stn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Science & Tech -->
+        <!-- Art & Culture -->
+        <div class="col-md-6 mb-40">
+            <div class="title-wrap bottom-line bottom-line--blue">
+                <h3 class="section-title section-title--sm">Art & Culture</h3>
+            </div>
+            <article class="entry" ng-repeat="acn in GetArtandCultureCategoryShort | limitTo:1">
+                <div class="entry__img-holder">
+                    <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(acn.newsserial)">
+                        <div class="thumb-container thumb-75">
+                            <img data-src="featuresNews/{{acn.captionPicture}}" src="featuresNews/{{acn.captionPicture}}" class="entry__img lazyload" alt="" />
+                        </div>
+                    </a>
+                </div>
+
+                <div class="entry__body">
+                    <div class="entry__header">
+                        <h2 class="entry__title">
+                            <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(acn.newsserial)">{{acn.title}}</a>
+                        </h2>
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <i class="ui-author"></i>
+                                <a href="#">{{acn.author}}</a>
+                            </li>
+                            <li class="entry__meta-date">
+                                <i class="ui-date"></i>
+                                {{acn.datetime}}
+                            </li>
+                            <li class="entry__meta-comments">
+                                <i class="ui-comments"></i>
+                                <a href="#">115</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="entry__excerpt">
+                        <p ng-bind-html="acn.description"></p>
+                        <a ng-click='DetailsFromTitle(stn.newsserial)' class="btnReadMore" href='http://mizanur919-001-site1.itempurl.com/#!/details'>Read More</a>
+                    </div>
+                </div>
+            </article>
+            <ul class="post-list-small post-list-small--border-top">
+                <li class="post-list-small__item" ng-repeat="acn in GetArtandCultureCategory | limitTo:3">
+                    <article class="post-list-small__entry">
+                        <div class="post-list-small__body">
+                            <h3 class="post-list-small__entry-title">
+                                <a href="http://mizanur919-001-site1.itempurl.com/#!/details" ng-click="DetailsFromTitle(acn.newsserial)">{{acn.title}}</a>
+                            </h3>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-date">
+                                    <i class="ui-date"></i>
+                                    {{acn.datetime}}
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div> <!-- end Art & Culture -->
+
+    </div>
+</section> <!-- end posts from categories -->
+<!-- Carousel posts -->
+<!--ng-if="gln.description.length > 20 ? gln.description.substr(0, gln.description.lastIndexOf(' ', 97)) + '...' : gln.description"-->
+<!--<script src="~/NewsHome/js/easing.min.js"></script>
+<script src="~/NewsHome/js/owl-carousel.min.js"></script>
+<script src="~/NewsHome/js/twitterFetcher_min.js"></script>
+<script src="~/NewsHome/js/jquery.newsTicker.min.js"></script>
+<script src="~/NewsHome/js/modernizr.min.js"></script>
+<script src="~/NewsHome/js/scripts.js"></script>
+<script src="~/js/site.js"></script>-->

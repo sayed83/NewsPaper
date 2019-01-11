@@ -1,0 +1,34 @@
+﻿
+@model BangladeshToday.Account.UserDetails
+@{
+    ViewData["Title"] = "UserLogin";
+}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" style="margin-top:100px;">
+        @if (TempData["UserLoginFailed"] != null)
+        {
+            <p class="alert alert-danger">@TempData["UserLoginFailed"]</p>
+        }
+        <h4 class="text-center text-uppercase" style=" font-family: tahoma; font-size: 30px; margin-bottom: 25px;">Login</h4>
+        <form asp-action="UserLogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="UserID" class="control-label"></label>*@
+                <input asp-for="UserID" class="form-control" placeholder="Enter Your Email"/>
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Password" class="control-label"></label>*@
+                <input asp-for="Password" class="form-control"  placeholder="Enter Your Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-default btn-sm btn-success" />
+                <a asp-action="RegisterUser" class="btn btn-sm btn-info">SignUp</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
